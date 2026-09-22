@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PinCard &mdash; Pinball Price Card Generator</title>
+<link rel="stylesheet" href="css/style.css">
+<style id="page-size-style"></style>
+</head>
+<body>
+
+<header class="topbar no-print">
+  <h1>PinCard <span>Printable price &amp; report-QR cards for your pinball machines</span></h1>
+  <div class="topbar-actions">
+    <button id="add-card-btn" class="primary">+ New Card</button>
+    <button id="export-btn">Export JSON</button>
+    <button id="import-btn">Import JSON</button>
+    <input type="file" id="import-file" accept="application/json" style="display:none">
+    <label class="field" style="display:flex;align-items:center;gap:6px;margin:0;">
+      <span style="font-weight:600;color:var(--muted);font-size:12px;">Paper</span>
+      <select id="paper-select" style="width:auto;">
+        <option value="letter">Letter (8.5&times;11 in)</option>
+        <option value="a4">A4</option>
+      </select>
+    </label>
+    <button id="print-btn" class="primary">Print Sheet</button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="panel no-print">
+    <strong>Your Games</strong>
+    <div id="card-list" class="card-list"></div>
+    <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
+  </aside>
+
+  <aside class="panel no-print" id="editor-panel">
+    <strong>Card Details</strong>
+
+    <label for="preset-select">Card size preset</label>
+    <select id="preset-select"></select>
+
+    <div class="field-row">
+      <div>
+        <label for="width-input">Width (mm)</label>
+        <input type="number" id="width-input" min="20" max="400" step="0.5">
+      </div>
+      <div>
+        <label for="height-input">Height (mm)</label>
+        <input type="number" id="height-input" min="20" max="400" step="0.5">
+      </div>
+    </div>
+
+    <label for="title-input">Game title</label>
+    <input type="text" id="title-input" placeholder="e.g. Godzilla (Premium)">
+
+    <label>Logo</label>
+    <div class="logo-drop" id="logo-drop"><div>Click or drop an image here to add a logo</div></div>
+    <input type="file" id="logo-file" accept="image/*" style="display:none">
+    <button class="small danger" id="remove-logo" style="margin-top:6px;display:none;">Remove logo</button>
+
+    <label>Pricing</label>
+    <div id="price-rows"></div>
+    <button class="small" id="add-price-row">+ Add price line</button>
+
+    <label for="qr-input">Report-a-problem URL</label>
+    <input type="url" id="qr-input" placeholder="https://yoursite.com/report?game=...">
+
+    <div class="field-row">
+      <div>
+        <label for="accent-input">Accent color</label>
+        <input type="color" id="accent-input">
+      </div>
+      <div>
+        <label for="copies-input">Copies to print</label>
+        <input type="number" id="copies-input" min="1" max="50" step="1">
+      </div>
+    </div>
+  </aside>
+  <div id="editor-empty" class="panel no-print" style="display:none;">
+    <div class="empty-hint">Select or create a card to edit it.</div>
+  </div>
+
+  <main class="preview-area no-print">
+    <h2>Live Preview</h2>
+    <div class="single-preview-wrap">
+      <div id="single-preview"></div>
+    </div>
+
+    <h2>Print Sheet Preview</h2>
+    <div class="sheet-settings">
+      <span style="color:var(--muted);font-size:12px;">This is exactly what will print &mdash; each card shows a dashed cut line.</span>
+    </div>
+    <div id="sheet-page" class="paper-letter"></div>
+  </main>
+
+</div>
+
+<footer class="app-footer no-print">
+  PinCard &middot; runs entirely in your browser, cards are saved locally on this device. Use Export JSON to back up your list.
+</footer>
+
+<script src="js/qrcode.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

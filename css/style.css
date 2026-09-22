@@ -1,0 +1,373 @@
+:root {
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --border: #d9dce1;
+  --text: #1c1f26;
+  --muted: #6b7280;
+  --accent: #1d4ed8;
+  --accent-soft: #e8edfc;
+  --danger: #c0392b;
+  --radius: 8px;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+header.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header.topbar h1 {
+  font-size: 17px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+header.topbar h1 span {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 12px;
+  display: block;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+button, .btn {
+  font: inherit;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 7px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+button:hover { background: #f0f1f3; }
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+button.primary:hover { background: #1740b0; }
+
+button.danger { color: var(--danger); }
+button.danger:hover { background: #fbeceb; }
+
+button.small { padding: 4px 8px; font-size: 12px; }
+
+select, input[type=text], input[type=number], input[type=url], input[type=color], textarea {
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  width: 100%;
+  background: #fff;
+  color: var(--text);
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 10px 0 4px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+}
+.field-row > div { flex: 1; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 360px 1fr;
+  gap: 0;
+  align-items: start;
+  min-height: calc(100vh - 53px);
+}
+
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 14px;
+  padding-bottom: 40px;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.card-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  background: #fbfbfc;
+}
+
+.card-list-item.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.card-list-item .meta {
+  overflow: hidden;
+}
+.card-list-item .meta .name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-list-item .meta .sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.card-list-item .row-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.empty-hint {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 14px;
+  line-height: 1.5;
+}
+
+.price-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+.price-row input { flex: 1; }
+
+.logo-drop {
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  background: #fafafa;
+}
+.logo-drop img {
+  max-width: 100%;
+  max-height: 80px;
+  display: block;
+  margin: 0 auto 6px;
+}
+
+.preview-area {
+  padding: 20px;
+  overflow: auto;
+}
+
+.preview-area h2 {
+  font-size: 14px;
+  margin: 0 0 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.single-preview-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background: repeating-conic-gradient(#eee 0% 25%, #f7f7f7 0% 50%) 50% / 16px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.sheet-settings {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.sheet-settings label {
+  margin: 0;
+  display: inline;
+}
+.sheet-settings .field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#sheet-page {
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--border), 0 4px 14px rgba(0,0,0,.08);
+  margin: 0 auto;
+  padding: 10mm;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 3mm;
+}
+#sheet-page.paper-letter { width: 215.9mm; min-height: 279.4mm; }
+#sheet-page.paper-a4 { width: 210mm; min-height: 297mm; }
+
+/* ---- The printable card itself ---- */
+.pin-card {
+  position: relative;
+  background: #fff;
+  outline: 1px dashed #9aa0aa;
+  outline-offset: -0.5mm;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 3mm;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.pin-card .accent-bar {
+  height: 1.6mm;
+  border-radius: 1mm;
+  margin-bottom: 2mm;
+  flex: none;
+}
+
+.pin-card .logo-wrap {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28%;
+  margin-bottom: 1.5mm;
+}
+.pin-card .logo-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.pin-card .logo-wrap .logo-placeholder {
+  color: #b8bcc4;
+  font-size: 2.6mm;
+  text-align: center;
+}
+
+.pin-card .title {
+  font-weight: 800;
+  font-size: 4.4mm;
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 1.5mm;
+  flex: none;
+  word-break: break-word;
+}
+
+.pin-card .prices {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1mm;
+  min-height: 0;
+}
+
+.pin-card .price-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1.5mm;
+  text-align: center;
+}
+.pin-card .price-line .amt {
+  font-weight: 800;
+  font-size: 4mm;
+}
+.pin-card .price-line .desc {
+  font-size: 2.6mm;
+  color: #333;
+}
+
+.pin-card .footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  margin-top: 1.5mm;
+  padding-top: 1.5mm;
+  border-top: 0.3mm solid #e2e2e2;
+}
+.pin-card .footer .qr {
+  flex: none;
+  display: flex;
+}
+.pin-card .footer .qr svg {
+  display: block;
+}
+.pin-card .footer .qr-caption {
+  font-size: 2.1mm;
+  line-height: 1.25;
+  color: #444;
+}
+.pin-card .footer .qr-caption strong {
+  display: block;
+  font-size: 2.3mm;
+}
+
+.no-print { }
+
+@media print {
+  body * { visibility: hidden; }
+  #sheet-page, #sheet-page * { visibility: visible; }
+  #sheet-page {
+    position: absolute;
+    left: 0; top: 0;
+    box-shadow: none;
+    margin: 0;
+  }
+  @page { margin: 0; }
+}
+
+footer.app-footer {
+  padding: 14px 18px;
+  color: var(--muted);
+  font-size: 12px;
+}
