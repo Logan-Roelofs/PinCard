@@ -300,32 +300,42 @@ label {
   outline: 1px dashed #9aa0aa;
   outline-offset: -0.5mm;
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  flex-direction: column;
   overflow: hidden;
   padding: 3mm;
-  gap: 2.5mm;
+  gap: 1.5mm;
   break-inside: avoid;
   page-break-inside: avoid;
   font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .pin-card .accent-bar {
-  width: 1.6mm;
+  height: 1.4mm;
   border-radius: 1mm;
   flex: none;
-  align-self: stretch;
+}
+
+/* Top: logo, centered */
+.pin-card .top-section {
+  flex: 1.1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1mm;
 }
 
 .pin-card .logo-wrap {
-  flex: 0 0 26%;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 0;
 }
 .pin-card .logo-wrap img {
-  max-width: 100%;
+  max-width: 80%;
   max-height: 100%;
   object-fit: contain;
 }
@@ -335,39 +345,41 @@ label {
   text-align: center;
 }
 
-.pin-card .main-col {
+.pin-card .title {
+  flex: none;
+  font-weight: 800;
+  font-size: 3.6mm;
+  text-align: center;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+/* Bottom: price (left) / QR (right) */
+.pin-card .bottom-row {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5mm;
+}
+
+.pin-card .prices {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1.5mm;
-}
-
-.pin-card .title {
-  font-weight: 800;
-  font-size: 4.4mm;
-  text-align: center;
-  line-height: 1.15;
-  flex: none;
-  word-break: break-word;
-}
-
-.pin-card .prices {
-  flex: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1mm;
-  min-height: 0;
 }
 
 .pin-card .price-line {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5mm;
-  text-align: center;
+  text-align: left;
 }
 .pin-card .price-line .amt {
   font-weight: 800;
@@ -379,15 +391,12 @@ label {
 }
 
 .pin-card .footer {
-  flex: 0 0 auto;
+  flex: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
   gap: 1mm;
-  padding-left: 2.5mm;
-  border-left: 0.3mm solid #e2e2e2;
-  max-width: 40%;
 }
 .pin-card .footer .qr {
   flex: none;
@@ -400,7 +409,7 @@ label {
   font-size: 2.1mm;
   line-height: 1.25;
   color: #444;
-  text-align: center;
+  text-align: right;
 }
 .pin-card .footer .qr-caption strong {
   display: block;

@@ -140,6 +140,8 @@
 
     var html = "";
     html += '<div class="accent-bar" style="background:' + escapeHtml(card.accent || "#1d4ed8") + '"></div>';
+
+    html += '<div class="top-section">';
     html += '<div class="logo-wrap">';
     if (card.logo) {
       html += '<img src="' + card.logo + '" alt="logo">';
@@ -147,14 +149,15 @@
       html += '<div class="logo-placeholder">LOGO</div>';
     }
     html += "</div>";
-    html += '<div class="main-col">';
     html += '<div class="title">' + escapeHtml(card.title || "") + "</div>";
+    html += "</div>";
+
+    html += '<div class="bottom-row">';
     html += '<div class="prices">';
     (card.priceRows || []).forEach(function (row) {
       if (!row.amt && !row.desc) return;
       html += '<div class="price-line"><span class="amt">' + escapeHtml(row.amt) + '</span><span class="desc">' + escapeHtml(row.desc) + "</span></div>";
     });
-    html += "</div>";
     html += "</div>";
     html += '<div class="footer">';
     if (card.qrUrl) {
@@ -163,6 +166,7 @@
     } else {
       html += '<div class="qr-caption" style="color:#b8bcc4">Add a report URL to show a QR code here.</div>';
     }
+    html += "</div>";
     html += "</div>";
 
     el.innerHTML = html;
