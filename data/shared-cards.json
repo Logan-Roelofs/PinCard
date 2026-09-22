@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "id": "cmud432odyghee8",
+    "preset": "bally_wpc",
+    "widthMm": 152,
+    "heightMm": 82,
+    "title": "Twilight Zone",
+    "logo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMDAgMTgwJz4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+CjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzZkMjhkOScvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9JzMwMCcgaGVpZ2h0PScxODAnIHJ4PScxNicgZmlsbD0ndXJsKCNnKScvPgo8dGV4dCB4PScxNTAnIHk9Jzk4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzgwMCcgZm9udC1zaXplPSczMCcgZmlsbD0nIzFjMWYyNicgdGV4dC1hbmNob3I9J21pZGRsZSc+VHdpbGlnaHQgWm9uZTwvdGV4dD4KPHRleHQgeD0nMTUwJyB5PScxMjgnIGZvbnQtZmFtaWx5PSdBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nNzAwJyBmb250LXNpemU9JzE1JyBsZXR0ZXItc3BhY2luZz0nNScgZmlsbD0nIzFjMWYyNicgb3BhY2l0eT0nMC41NScgdGV4dC1hbmNob3I9J21pZGRsZSc+UElOQkFMTDwvdGV4dD4KPC9zdmc+",
+    "priceRows": [
+      {
+        "amt": "$0.75",
+        "desc": "3 Balls (1 Game)"
+      },
+      {
+        "amt": "$2.00",
+        "desc": "3 Games"
+      }
+    ],
+    "qrUrl": "https://pinhub-d1101.web.app/report",
+    "accent": "#6d28d9",
+    "copies": 1
+  },
+  {
+    "id": "cmud432oeztcbo5",
+    "preset": "bally_ss",
+    "widthMm": 140,
+    "heightMm": 83,
+    "title": "Xenon",
+    "logo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMDAgMTgwJz4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+CjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzA4OTFiMicvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9JzMwMCcgaGVpZ2h0PScxODAnIHJ4PScxNicgZmlsbD0ndXJsKCNnKScvPgo8dGV4dCB4PScxNTAnIHk9Jzk4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzgwMCcgZm9udC1zaXplPSczMCcgZmlsbD0nIzFjMWYyNicgdGV4dC1hbmNob3I9J21pZGRsZSc+WGVub248L3RleHQ+Cjx0ZXh0IHg9JzE1MCcgeT0nMTI4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzcwMCcgZm9udC1zaXplPScxNScgbGV0dGVyLXNwYWNpbmc9JzUnIGZpbGw9JyMxYzFmMjYnIG9wYWNpdHk9JzAuNTUnIHRleHQtYW5jaG9yPSdtaWRkbGUnPlBJTkJBTEw8L3RleHQ+Cjwvc3ZnPg==",
+    "priceRows": [
+      {
+        "amt": "$0.75",
+        "desc": "3 Balls (1 Game)"
+      },
+      {
+        "amt": "$2.00",
+        "desc": "3 Games"
+      }
+    ],
+    "qrUrl": "https://pinhub-d1101.web.app/report",
+    "accent": "#0891b2",
+    "copies": 1
+  },
+  {
+    "id": "cmud432oe83h53j",
+    "preset": "data_east",
+    "widthMm": 140,
+    "heightMm": 76,
+    "title": "RoboCop",
+    "logo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMDAgMTgwJz4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+CjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nIzM3NDE1MScvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9JzMwMCcgaGVpZ2h0PScxODAnIHJ4PScxNicgZmlsbD0ndXJsKCNnKScvPgo8dGV4dCB4PScxNTAnIHk9Jzk4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzgwMCcgZm9udC1zaXplPSczMCcgZmlsbD0nIzFjMWYyNicgdGV4dC1hbmNob3I9J21pZGRsZSc+Um9ib0NvcDwvdGV4dD4KPHRleHQgeD0nMTUwJyB5PScxMjgnIGZvbnQtZmFtaWx5PSdBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nNzAwJyBmb250LXNpemU9JzE1JyBsZXR0ZXItc3BhY2luZz0nNScgZmlsbD0nIzFjMWYyNicgb3BhY2l0eT0nMC41NScgdGV4dC1hbmNob3I9J21pZGRsZSc+UElOQkFMTDwvdGV4dD4KPC9zdmc+",
+    "priceRows": [
+      {
+        "amt": "$0.75",
+        "desc": "3 Balls (1 Game)"
+      },
+      {
+        "amt": "$2.00",
+        "desc": "3 Games"
+      }
+    ],
+    "qrUrl": "https://pinhub-d1101.web.app/report",
+    "accent": "#374151",
+    "copies": 1
+  },
+  {
+    "id": "cmud432oe4g3oe8",
+    "preset": "williams_standard",
+    "widthMm": 154,
+    "heightMm": 83,
+    "title": "Funhouse",
+    "logo": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMDAgMTgwJz4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCcgeTE9JzAnIHgyPScxJyB5Mj0nMSc+CjxzdG9wIG9mZnNldD0nMCcgc3RvcC1jb2xvcj0nI2ZmZmZmZicvPjxzdG9wIG9mZnNldD0nMScgc3RvcC1jb2xvcj0nI2VhNTgwYycvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9JzMwMCcgaGVpZ2h0PScxODAnIHJ4PScxNicgZmlsbD0ndXJsKCNnKScvPgo8dGV4dCB4PScxNTAnIHk9Jzk4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzgwMCcgZm9udC1zaXplPSczMCcgZmlsbD0nIzFjMWYyNicgdGV4dC1hbmNob3I9J21pZGRsZSc+RnVuaG91c2U8L3RleHQ+Cjx0ZXh0IHg9JzE1MCcgeT0nMTI4JyBmb250LWZhbWlseT0nQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZicgZm9udC13ZWlnaHQ9JzcwMCcgZm9udC1zaXplPScxNScgbGV0dGVyLXNwYWNpbmc9JzUnIGZpbGw9JyMxYzFmMjYnIG9wYWNpdHk9JzAuNTUnIHRleHQtYW5jaG9yPSdtaWRkbGUnPlBJTkJBTEw8L3RleHQ+Cjwvc3ZnPg==",
+    "priceRows": [
+      {
+        "amt": "$0.75",
+        "desc": "3 Balls (1 Game)"
+      },
+      {
+        "amt": "$2.00",
+        "desc": "3 Games"
+      }
+    ],
+    "qrUrl": "https://pinhub-d1101.web.app/report",
+    "accent": "#ea580c",
+    "copies": 1
+  }
+]
