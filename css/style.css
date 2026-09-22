@@ -339,11 +339,11 @@ label {
 }
 
 .pin-card .logo-wrap {
-  flex: 1 1 auto;
+  flex: 0 1 65%;
   min-height: 0;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 .pin-card .logo-wrap img {
@@ -399,9 +399,6 @@ label {
 .pin-card.no-price .top-section {
   flex: 1 1 50%;
   min-width: 0;
-}
-.pin-card.no-price .logo-wrap {
-  align-items: flex-end;
 }
 .pin-card.no-price .bottom-row {
   flex: 1 1 50%;
