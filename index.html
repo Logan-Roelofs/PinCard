@@ -27,18 +27,30 @@
   </div>
 </header>
 
-<section id="shared-library" class="shared-section no-print" style="display:none;">
-  <h2>Community Card Library</h2>
-  <p>Cards shared by the site owner &mdash; click Add to My Games to copy one into your own printable list.</p>
-  <div id="shared-list" class="shared-list"></div>
-</section>
-
 <div class="layout">
 
   <aside class="panel no-print">
-    <strong>Your Games</strong>
-    <div id="card-list" class="card-list"></div>
-    <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tab-mine" type="button">Your Games</button>
+      <button class="tab-btn" id="tab-shared" type="button">Community</button>
+    </div>
+
+    <div id="mine-tab">
+      <div id="card-list" class="card-list"></div>
+      <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
+    </div>
+
+    <div id="shared-tab" style="display:none;">
+      <div id="shared-list-side" class="card-list"></div>
+      <div id="shared-empty-hint" class="empty-hint">No community cards have been published yet.</div>
+    </div>
+  </aside>
+
+  <aside class="panel no-print" id="shared-detail-panel" style="display:none;">
+    <strong>Shared Card</strong>
+    <p class="muted-note">Published by the site owner. Add it to your own list to edit its logo, pricing, or QR link before printing.</p>
+    <div id="shared-detail-meta" class="empty-hint"></div>
+    <button id="shared-add-btn" class="primary" style="margin-top:10px;width:100%;">+ Add to My Games</button>
   </aside>
 
   <aside class="panel no-print" id="editor-panel">

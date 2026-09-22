@@ -19,7 +19,9 @@
     cards: [],
     selectedId: null,
     settings: { paper: "letter" },
-    sharedCards: []
+    sharedCards: [],
+    activeTab: "mine",
+    selectedSharedIndex: null
   };
 
   // ---------- persistence ----------
@@ -76,6 +78,14 @@
 
   function getSelected() {
     return state.cards.find(function (c) { return c.id === state.selectedId; }) || null;
+  }
+
+  function getSharedSelected() {
+    return state.selectedSharedIndex != null ? (state.sharedCards[state.selectedSharedIndex] || null) : null;
+  }
+
+  function getPreviewCard() {
+    return state.activeTab === "shared" ? getSharedSelected() : getSelected();
   }
 
   // ---------- QR ----------
@@ -212,6 +222,16 @@
   }
 
   // ---------- UI: editor form ----------
+
+  var tabMineBtn = document.getElementById("tab-mine");
+  var tabSharedBtn = document.getElementById("tab-shared");
+  var mineTabEl = document.getElementById("mine-tab");
+  var sharedTabEl = document.getElementById("shared-tab");
+  var sharedListSideEl = document.getElementById("shared-list-side");
+  var sharedEmptyHint = document.getElementById("shared-empty-hint");
+  var sharedDetailPanel = document.getElementById("shared-detail-panel");
+  var sharedDetailMeta = document.getElementById("shared-detail-meta");
+  var sharedAddBtn = document.getElementById("shared-add-btn");
 
   var editorPanel = document.getElementById("editor-panel");
   var editorEmpty = document.getElementById("editor-empty");
@@ -411,9 +431,8 @@
 
   function renderPreview() {
     singlePreviewWrap.innerHTML = "";
-    var card = getSelected();
+    var card = getPreviewCard();
     if (card) singlePreviewWrap.appendChild(renderCardNode(card));
-    renderList();
     renderSheet();
   }
 
@@ -442,7 +461,7 @@
     state.cards.push(card);
     state.selectedId = card.id;
     save();
-    renderAll();
+    switchTab("mine");
   });
 
   document.getElementById("print-btn").addEventListener("click", function () {
@@ -476,7 +495,7 @@
           return c;
         }));
         save();
-        renderAll();
+        switchTab("mine");
       } catch (err) {
         alert("Could not read that file as a PinCard export.");
       }
@@ -485,37 +504,78 @@
     e.target.value = "";
   });
 
-  // ---------- shared card library ----------
+  // ---------- shared card library (Community tab) ----------
 
-  var sharedSection = document.getElementById("shared-library");
-  var sharedListEl = document.getElementById("shared-list");
-
-  function renderSharedList() {
-    if (!state.sharedCards.length) {
-      sharedSection.style.display = "none";
-      return;
-    }
-    sharedSection.style.display = "block";
-    sharedListEl.innerHTML = "";
-    state.sharedCards.forEach(function (card) {
-      var wrap = document.createElement("div");
-      wrap.className = "shared-item";
-      wrap.appendChild(renderCardNode(card));
-      var btn = document.createElement("button");
-      btn.className = "small primary";
-      btn.textContent = "+ Add to My Games";
-      btn.addEventListener("click", function () {
-        var copy = JSON.parse(JSON.stringify(card));
-        copy.id = uid();
-        state.cards.push(copy);
-        state.selectedId = copy.id;
-        save();
-        renderAll();
+  function renderSharedSideList() {
+    sharedListSideEl.innerHTML = "";
+    sharedEmptyHint.style.display = state.sharedCards.length ? "none" : "block";
+    state.sharedCards.forEach(function (card, idx) {
+      var item = document.createElement("div");
+      item.className = "card-list-item" + (state.selectedSharedIndex === idx ? " active" : "");
+      item.innerHTML =
+        '<div class="meta"><div class="name">' + escapeHtml(card.title || "Untitled") + '</div>' +
+        '<div class="sub">' + card.widthMm + "×" + card.heightMm + " mm</div></div>";
+      item.addEventListener("click", function () {
+        state.selectedSharedIndex = idx;
+        renderSharedSideList();
+        renderRightPanel();
+        renderPreview();
       });
-      wrap.appendChild(btn);
-      sharedListEl.appendChild(wrap);
+      sharedListSideEl.appendChild(item);
     });
   }
+
+  function renderSharedDetail() {
+    var card = getSharedSelected();
+    if (!card) {
+      sharedDetailMeta.textContent = "Select a card from the list to preview it here.";
+      sharedAddBtn.style.display = "none";
+      return;
+    }
+    sharedAddBtn.style.display = "block";
+    var html = "<strong>" + escapeHtml(card.title || "Untitled") + "</strong>";
+    html += '<div class="sub" style="margin:2px 0 8px;">' + card.widthMm + "×" + card.heightMm + " mm</div>";
+    (card.priceRows || []).forEach(function (row) {
+      if (!row.amt && !row.desc) return;
+      html += '<div class="price-line-view"><span class="amt">' + escapeHtml(row.amt) + '</span><span class="desc">' + escapeHtml(row.desc) + "</span></div>";
+    });
+    sharedDetailMeta.innerHTML = html;
+  }
+
+  function renderRightPanel() {
+    if (state.activeTab === "shared") {
+      editorPanel.style.display = "none";
+      editorEmpty.style.display = "none";
+      sharedDetailPanel.style.display = "block";
+      renderSharedDetail();
+    } else {
+      sharedDetailPanel.style.display = "none";
+      renderEditor();
+    }
+  }
+
+  function switchTab(tab) {
+    state.activeTab = tab;
+    tabMineBtn.classList.toggle("active", tab === "mine");
+    tabSharedBtn.classList.toggle("active", tab === "shared");
+    mineTabEl.style.display = tab === "mine" ? "block" : "none";
+    sharedTabEl.style.display = tab === "shared" ? "block" : "none";
+    renderAll();
+  }
+
+  tabMineBtn.addEventListener("click", function () { switchTab("mine"); });
+  tabSharedBtn.addEventListener("click", function () { switchTab("shared"); });
+
+  sharedAddBtn.addEventListener("click", function () {
+    var card = getSharedSelected();
+    if (!card) return;
+    var copy = JSON.parse(JSON.stringify(card));
+    copy.id = uid();
+    state.cards.push(copy);
+    state.selectedId = copy.id;
+    save();
+    switchTab("mine");
+  });
 
   function loadSharedLibrary() {
     fetch("data/manifest.json", { cache: "no-store" })
@@ -538,7 +598,8 @@
         state.sharedCards = (fileResults || []).reduce(function (acc, cards) {
           return acc.concat(cards);
         }, []);
-        renderSharedList();
+        renderSharedSideList();
+        renderRightPanel();
       })
       .catch(function () {
         // shared library is optional; ignore fetch/parse failures (e.g. opened via file://)
@@ -549,7 +610,8 @@
 
   function renderAll() {
     renderList();
-    renderEditor();
+    renderSharedSideList();
+    renderRightPanel();
     renderPreview();
     renderSheet();
   }
