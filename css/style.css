@@ -104,6 +104,37 @@ label {
 }
 .field-row > div { flex: 1; }
 
+.shared-section {
+  padding: 14px 18px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.shared-section h2 {
+  margin: 0 0 2px;
+  font-size: 15px;
+}
+.shared-section p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.shared-list {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.shared-item {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  background: repeating-conic-gradient(#eee 0% 25%, #f7f7f7 0% 50%) 50% / 16px 16px;
+}
+
 .layout {
   display: grid;
   grid-template-columns: 260px 360px 1fr;

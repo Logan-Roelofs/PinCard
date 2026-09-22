@@ -18,7 +18,8 @@
   var state = {
     cards: [],
     selectedId: null,
-    settings: { paper: "letter" }
+    settings: { paper: "letter" },
+    sharedCards: []
   };
 
   // ---------- persistence ----------
@@ -484,6 +485,66 @@
     e.target.value = "";
   });
 
+  // ---------- shared card library ----------
+
+  var sharedSection = document.getElementById("shared-library");
+  var sharedListEl = document.getElementById("shared-list");
+
+  function renderSharedList() {
+    if (!state.sharedCards.length) {
+      sharedSection.style.display = "none";
+      return;
+    }
+    sharedSection.style.display = "block";
+    sharedListEl.innerHTML = "";
+    state.sharedCards.forEach(function (card) {
+      var wrap = document.createElement("div");
+      wrap.className = "shared-item";
+      wrap.appendChild(renderCardNode(card));
+      var btn = document.createElement("button");
+      btn.className = "small primary";
+      btn.textContent = "+ Add to My Games";
+      btn.addEventListener("click", function () {
+        var copy = JSON.parse(JSON.stringify(card));
+        copy.id = uid();
+        state.cards.push(copy);
+        state.selectedId = copy.id;
+        save();
+        renderAll();
+      });
+      wrap.appendChild(btn);
+      sharedListEl.appendChild(wrap);
+    });
+  }
+
+  function loadSharedLibrary() {
+    fetch("data/manifest.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (files) {
+        if (!Array.isArray(files) || !files.length) return [];
+        return Promise.all(files.map(function (name) {
+          return fetch("data/" + name, { cache: "no-store" })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (data) {
+              if (!data) return [];
+              if (Array.isArray(data)) return data;
+              if (Array.isArray(data.cards)) return data.cards;
+              return [];
+            })
+            .catch(function () { return []; });
+        }));
+      })
+      .then(function (fileResults) {
+        state.sharedCards = (fileResults || []).reduce(function (acc, cards) {
+          return acc.concat(cards);
+        }, []);
+        renderSharedList();
+      })
+      .catch(function () {
+        // shared library is optional; ignore fetch/parse failures (e.g. opened via file://)
+      });
+  }
+
   // ---------- init ----------
 
   function renderAll() {
@@ -496,4 +557,5 @@
   loadState();
   paperSelect.value = state.settings.paper;
   renderAll();
+  loadSharedLibrary();
 })();
