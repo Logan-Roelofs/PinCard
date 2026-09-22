@@ -30,20 +30,13 @@
 <div class="layout">
 
   <aside class="panel no-print">
-    <div class="tab-bar">
-      <button class="tab-btn active" id="tab-mine" type="button">Your Games</button>
-      <button class="tab-btn" id="tab-shared" type="button">Community</button>
-    </div>
+    <strong>Your Games</strong>
+    <div id="card-list" class="card-list"></div>
+    <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
 
-    <div id="mine-tab">
-      <div id="card-list" class="card-list"></div>
-      <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
-    </div>
-
-    <div id="shared-tab" style="display:none;">
-      <div id="shared-list-side" class="card-list"></div>
-      <div id="shared-empty-hint" class="empty-hint">No community cards have been published yet.</div>
-    </div>
+    <strong class="section-heading">Community</strong>
+    <div id="shared-list-side" class="card-list"></div>
+    <div id="shared-empty-hint" class="empty-hint">No community cards have been published yet.</div>
   </aside>
 
   <aside class="panel no-print" id="shared-detail-panel" style="display:none;">

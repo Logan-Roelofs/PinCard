@@ -104,27 +104,11 @@ label {
 }
 .field-row > div { flex: 1; }
 
-.tab-bar {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-.tab-btn {
-  flex: 1;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  padding: 8px 4px;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--muted);
-  border-bottom: 2px solid transparent;
-}
-.tab-btn:hover { background: #f0f1f3; }
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+.section-heading {
+  display: block;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
 
 .muted-note {

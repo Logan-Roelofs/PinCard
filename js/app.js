@@ -194,6 +194,7 @@
       item.addEventListener("click", function (e) {
         if (e.target.closest(".dup") || e.target.closest(".del")) return;
         state.selectedId = card.id;
+        state.activeTab = "mine";
         save();
         renderAll();
       });
@@ -204,6 +205,7 @@
         var idx = state.cards.indexOf(card);
         state.cards.splice(idx + 1, 0, copy);
         state.selectedId = copy.id;
+        state.activeTab = "mine";
         save();
         renderAll();
       });
@@ -214,6 +216,7 @@
         if (state.selectedId === card.id) {
           state.selectedId = state.cards.length ? state.cards[Math.max(0, idx - 1)].id : null;
         }
+        state.activeTab = "mine";
         save();
         renderAll();
       });
@@ -223,10 +226,6 @@
 
   // ---------- UI: editor form ----------
 
-  var tabMineBtn = document.getElementById("tab-mine");
-  var tabSharedBtn = document.getElementById("tab-shared");
-  var mineTabEl = document.getElementById("mine-tab");
-  var sharedTabEl = document.getElementById("shared-tab");
   var sharedListSideEl = document.getElementById("shared-list-side");
   var sharedEmptyHint = document.getElementById("shared-empty-hint");
   var sharedDetailPanel = document.getElementById("shared-detail-panel");
@@ -517,6 +516,7 @@
         '<div class="sub">' + card.widthMm + "×" + card.heightMm + " mm</div></div>";
       item.addEventListener("click", function () {
         state.selectedSharedIndex = idx;
+        state.activeTab = "shared";
         renderSharedSideList();
         renderRightPanel();
         renderPreview();
@@ -556,15 +556,8 @@
 
   function switchTab(tab) {
     state.activeTab = tab;
-    tabMineBtn.classList.toggle("active", tab === "mine");
-    tabSharedBtn.classList.toggle("active", tab === "shared");
-    mineTabEl.style.display = tab === "mine" ? "block" : "none";
-    sharedTabEl.style.display = tab === "shared" ? "block" : "none";
     renderAll();
   }
-
-  tabMineBtn.addEventListener("click", function () { switchTab("mine"); });
-  tabSharedBtn.addEventListener("click", function () { switchTab("shared"); });
 
   sharedAddBtn.addEventListener("click", function () {
     var card = getSharedSelected();
