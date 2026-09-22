@@ -70,6 +70,7 @@
         { amt: "$0.75", desc: "3 Balls (1 Game)" },
         { amt: "$2.00", desc: "3 Games" }
       ],
+      showPrices: true,
       qrUrl: "",
       accent: "#1d4ed8",
       copies: 1
@@ -152,13 +153,16 @@
     html += '<div class="title">' + escapeHtml(card.title || "") + "</div>";
     html += "</div>";
 
-    html += '<div class="bottom-row">';
-    html += '<div class="prices">';
-    (card.priceRows || []).forEach(function (row) {
-      if (!row.amt && !row.desc) return;
-      html += '<div class="price-line"><span class="amt">' + escapeHtml(row.amt) + '</span><span class="desc">' + escapeHtml(row.desc) + "</span></div>";
-    });
-    html += "</div>";
+    var showPrices = card.showPrices !== false;
+    html += '<div class="bottom-row' + (showPrices ? "" : " center-qr") + '">';
+    if (showPrices) {
+      html += '<div class="prices">';
+      (card.priceRows || []).forEach(function (row) {
+        if (!row.amt && !row.desc) return;
+        html += '<div class="price-line"><span class="amt">' + escapeHtml(row.amt) + '</span><span class="desc">' + escapeHtml(row.desc) + "</span></div>";
+      });
+      html += "</div>";
+    }
     html += '<div class="footer">';
     if (card.qrUrl) {
       html += '<div class="qr">' + buildQrSvg(card.qrUrl, qrSize) + "</div>";
@@ -247,6 +251,7 @@
   var copiesInput = document.getElementById("copies-input");
   var priceRowsEl = document.getElementById("price-rows");
   var addPriceRowBtn = document.getElementById("add-price-row");
+  var showPricesInput = document.getElementById("show-prices-input");
   var logoDrop = document.getElementById("logo-drop");
   var logoFile = document.getElementById("logo-file");
   var removeLogoBtn = document.getElementById("remove-logo");
@@ -275,6 +280,7 @@
     qrInput.value = card.qrUrl;
     accentInput.value = card.accent;
     copiesInput.value = card.copies;
+    showPricesInput.checked = card.showPrices !== false;
 
     priceRowsEl.innerHTML = "";
     (card.priceRows || []).forEach(function (row, i) {
@@ -377,6 +383,14 @@
     save();
     renderList();
     renderSheet();
+  });
+
+  showPricesInput.addEventListener("change", function () {
+    var card = getSelected();
+    if (!card) return;
+    card.showPrices = showPricesInput.checked;
+    save();
+    renderPreview();
   });
 
   addPriceRowBtn.addEventListener("click", function () {

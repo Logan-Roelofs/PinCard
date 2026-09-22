@@ -104,6 +104,18 @@ label {
 }
 .field-row > div { flex: 1; }
 
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--text);
+  margin: 4px 0 8px;
+}
+.checkbox-row input { width: auto; }
+
 .section-heading {
   display: block;
   margin-top: 20px;
@@ -363,6 +375,15 @@ label {
   align-items: flex-end;
   justify-content: space-between;
   gap: 2.5mm;
+}
+.pin-card .bottom-row.center-qr {
+  justify-content: center;
+}
+.pin-card .bottom-row.center-qr .footer {
+  align-items: center;
+}
+.pin-card .bottom-row.center-qr .footer .qr-caption {
+  text-align: center;
 }
 
 .pin-card .prices {
