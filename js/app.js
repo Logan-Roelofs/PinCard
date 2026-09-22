@@ -5,14 +5,14 @@
   var SETTINGS_KEY = "pincard.settings.v1";
 
   var PRESETS = {
-    stern: { label: "Stern Pinball (Modern)", w: 75, h: 140 },
-    bally_wpc: { label: "Bally (WPC) / Williams (WPC)", w: 82, h: 152 },
-    bally_ss: { label: "Bally (SS Series)", w: 83, h: 140 },
-    data_east: { label: "Data East / GamePlan", w: 76, h: 140 },
-    gottlieb_instruction: { label: "Gottlieb – Instruction Card", w: 108, h: 154 },
-    gottlieb_score: { label: "Gottlieb – Score Card", w: 57, h: 154 },
-    williams_standard: { label: "Williams (Standard)", w: 83, h: 154 },
-    custom: { label: "Custom size", w: 75, h: 140 }
+    stern: { label: "Stern Pinball (Modern)", w: 140, h: 75 },
+    bally_wpc: { label: "Bally (WPC) / Williams (WPC)", w: 152, h: 82 },
+    bally_ss: { label: "Bally (SS Series)", w: 140, h: 83 },
+    data_east: { label: "Data East / GamePlan", w: 140, h: 76 },
+    gottlieb_instruction: { label: "Gottlieb – Instruction Card", w: 154, h: 108 },
+    gottlieb_score: { label: "Gottlieb – Score Card", w: 154, h: 57 },
+    williams_standard: { label: "Williams (Standard)", w: 154, h: 83 },
+    custom: { label: "Custom size", w: 140, h: 75 }
   };
 
   var state = {
@@ -34,6 +34,13 @@
       var s = localStorage.getItem(SETTINGS_KEY);
       if (s) state.settings = Object.assign(state.settings, JSON.parse(s));
     } catch (e) {}
+    state.cards.forEach(function (card) {
+      var preset = PRESETS[card.preset];
+      if (preset && card.preset !== "custom") {
+        card.widthMm = preset.w;
+        card.heightMm = preset.h;
+      }
+    });
     if (state.cards.length && !state.selectedId) {
       state.selectedId = state.cards[0].id;
     }
@@ -129,12 +136,14 @@
       html += '<div class="logo-placeholder">LOGO</div>';
     }
     html += "</div>";
+    html += '<div class="main-col">';
     html += '<div class="title">' + escapeHtml(card.title || "") + "</div>";
     html += '<div class="prices">';
     (card.priceRows || []).forEach(function (row) {
       if (!row.amt && !row.desc) return;
       html += '<div class="price-line"><span class="amt">' + escapeHtml(row.amt) + '</span><span class="desc">' + escapeHtml(row.desc) + "</span></div>";
     });
+    html += "</div>";
     html += "</div>";
     html += '<div class="footer">';
     if (card.qrUrl) {
