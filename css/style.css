@@ -111,11 +111,28 @@ label {
   border-top: 1px solid var(--border);
 }
 
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
 .muted-note {
   font-size: 12px;
   color: var(--muted);
   line-height: 1.5;
   margin: 8px 0 0;
+}
+
+.local-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.local-actions button {
+  flex: 1;
 }
 
 #shared-detail-meta {

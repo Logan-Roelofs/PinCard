@@ -12,10 +12,6 @@
 <header class="topbar no-print">
   <h1>PinCard <span>Printable price &amp; report-QR cards for your pinball machines</span></h1>
   <div class="topbar-actions">
-    <button id="add-card-btn" class="primary">+ New Card</button>
-    <button id="export-btn">Export JSON</button>
-    <button id="import-btn">Import JSON</button>
-    <input type="file" id="import-file" accept="application/json" style="display:none">
     <label class="field" style="display:flex;align-items:center;gap:6px;margin:0;">
       <span style="font-weight:600;color:var(--muted);font-size:12px;">Paper</span>
       <select id="paper-select" style="width:auto;">
@@ -30,9 +26,20 @@
 <div class="layout">
 
   <aside class="panel no-print">
-    <strong>Your Games</strong>
+    <div class="panel-header-row">
+      <strong>Your Games</strong>
+      <button id="add-card-btn" class="primary small">+ New Card</button>
+    </div>
     <div id="card-list" class="card-list"></div>
     <div id="empty-hint" class="empty-hint">No cards yet. Click <strong>+ New Card</strong> to create your first price card.</div>
+
+    <strong class="section-heading">Saved locally</strong>
+    <p class="muted-note">Your cards live only in this browser. Back them up or move them to another device as a JSON file.</p>
+    <div class="local-actions">
+      <button id="export-btn" class="small">Export JSON</button>
+      <button id="import-btn" class="small">Import JSON</button>
+      <input type="file" id="import-file" accept="application/json" style="display:none">
+    </div>
 
     <strong class="section-heading">Community</strong>
     <div id="shared-list-side" class="card-list"></div>
@@ -109,7 +116,7 @@
 </div>
 
 <footer class="app-footer no-print">
-  PinCard &middot; runs entirely in your browser, cards are saved locally on this device. Use Export JSON to back up your list.
+  PinCard &middot; runs entirely in your browser, no account or server required.
 </footer>
 
 <script src="js/qrcode.js"></script>
