@@ -400,10 +400,19 @@ label {
   flex: 1 1 50%;
   min-width: 0;
 }
+.pin-card.no-price .logo-wrap {
+  align-items: flex-end;
+}
 .pin-card.no-price .bottom-row {
   flex: 1 1 50%;
   min-width: 0;
   align-items: center;
+}
+.pin-card.no-price .footer .qr-caption {
+  font-size: 2.8mm;
+}
+.pin-card.no-price .footer .qr-caption strong {
+  font-size: 3.1mm;
 }
 
 .pin-card .prices {
