@@ -132,12 +132,16 @@
   }
 
   function renderCardNode(card) {
+    var showPrices = card.showPrices !== false;
+
     var el = document.createElement("div");
-    el.className = "pin-card";
+    el.className = "pin-card" + (showPrices ? "" : " no-price");
     el.style.width = card.widthMm + "mm";
     el.style.height = card.heightMm + "mm";
 
-    var qrSize = Math.max(12, Math.min(card.widthMm, card.heightMm) * 0.32);
+    var qrSize = showPrices
+      ? Math.max(12, Math.min(card.widthMm, card.heightMm) * 0.32)
+      : Math.max(14, Math.min(card.heightMm * 0.55, card.widthMm * 0.42));
 
     var html = "";
     html += '<div class="accent-bar" style="background:' + escapeHtml(card.accent || "#1d4ed8") + '"></div>';
@@ -153,7 +157,6 @@
     html += '<div class="title">' + escapeHtml(card.title || "") + "</div>";
     html += "</div>";
 
-    var showPrices = card.showPrices !== false;
     html += '<div class="bottom-row' + (showPrices ? "" : " center-qr") + '">';
     if (showPrices) {
       html += '<div class="prices">';

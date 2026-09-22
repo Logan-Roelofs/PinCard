@@ -386,6 +386,26 @@ label {
   text-align: center;
 }
 
+/* No pricing: logo on the left, QR on the right, full-height */
+.pin-card.no-price {
+  flex-direction: row;
+  align-items: stretch;
+}
+.pin-card.no-price .accent-bar {
+  width: 1.4mm;
+  height: auto;
+  align-self: stretch;
+}
+.pin-card.no-price .top-section {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+.pin-card.no-price .bottom-row {
+  flex: 1 1 50%;
+  min-width: 0;
+  align-items: center;
+}
+
 .pin-card .prices {
   flex: 1 1 auto;
   min-width: 0;
