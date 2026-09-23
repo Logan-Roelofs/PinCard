@@ -143,13 +143,17 @@
       ? Math.max(12, Math.min(card.widthMm, card.heightMm) * 0.32)
       : Math.max(14, Math.min(card.heightMm * 0.55, card.widthMm * 0.42));
 
+    var logoMaxH = showPrices
+      ? Math.max(8, card.heightMm * 0.32)
+      : Math.max(10, card.heightMm * 0.46);
+
     var html = "";
     html += '<div class="accent-bar" style="background:' + escapeHtml(card.accent || "#1d4ed8") + '"></div>';
 
     html += '<div class="top-section">';
     html += '<div class="logo-wrap">';
     if (card.logo) {
-      html += '<img src="' + card.logo + '" alt="logo">';
+      html += '<img src="' + card.logo + '" alt="logo" style="max-height:' + logoMaxH.toFixed(2) + 'mm">';
     } else {
       html += '<div class="logo-placeholder">LOGO</div>';
     }
