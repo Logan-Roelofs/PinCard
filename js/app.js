@@ -131,6 +131,15 @@
     });
   }
 
+  var DEFAULT_CAPTION_TITLE = "Problem with this game?";
+  var DEFAULT_CAPTION_SUB = "Scan to report it";
+  var SCALE_KEYS = ["title", "amt", "desc", "caption"];
+
+  function getScale(card, key) {
+    var v = card.textScale && card.textScale[key];
+    return typeof v === "number" && v > 0 ? v : 100;
+  }
+
   function renderCardNode(card) {
     var showPrices = card.showPrices !== false;
 
@@ -138,6 +147,9 @@
     el.className = "pin-card" + (showPrices ? "" : " no-price");
     el.style.width = card.widthMm + "mm";
     el.style.height = card.heightMm + "mm";
+    SCALE_KEYS.forEach(function (k) {
+      el.style.setProperty("--" + k + "-scale", getScale(card, k) / 100);
+    });
 
     var qrSize = showPrices
       ? Math.max(12, Math.min(card.widthMm, card.heightMm) * 0.32)
@@ -173,7 +185,13 @@
     html += '<div class="footer">';
     if (card.qrUrl) {
       html += '<div class="qr">' + buildQrSvg(card.qrUrl, qrSize) + "</div>";
-      html += '<div class="qr-caption"><strong>Problem with this game?</strong>Scan to report it</div>';
+      var capTitle = typeof card.captionTitle === "string" ? card.captionTitle : DEFAULT_CAPTION_TITLE;
+      var capSub = typeof card.captionSub === "string" ? card.captionSub : DEFAULT_CAPTION_SUB;
+      if (capTitle || capSub) {
+        html += '<div class="qr-caption">' +
+          (capTitle ? "<strong>" + escapeHtml(capTitle) + "</strong>" : "") +
+          escapeHtml(capSub) + "</div>";
+      }
     } else {
       html += '<div class="qr-caption" style="color:#b8bcc4">Add a report URL to show a QR code here.</div>';
     }
@@ -259,6 +277,14 @@
   var priceRowsEl = document.getElementById("price-rows");
   var addPriceRowBtn = document.getElementById("add-price-row");
   var showPricesInput = document.getElementById("show-prices-input");
+  var captionTitleInput = document.getElementById("caption-title-input");
+  var captionSubInput = document.getElementById("caption-sub-input");
+  var scaleInputs = {};
+  var scaleOutputs = {};
+  SCALE_KEYS.forEach(function (k) {
+    scaleInputs[k] = document.getElementById("scale-" + k);
+    scaleOutputs[k] = document.getElementById("scale-" + k + "-val");
+  });
   var logoDrop = document.getElementById("logo-drop");
   var logoFile = document.getElementById("logo-file");
   var removeLogoBtn = document.getElementById("remove-logo");
@@ -288,6 +314,13 @@
     accentInput.value = card.accent;
     copiesInput.value = card.copies;
     showPricesInput.checked = card.showPrices !== false;
+    captionTitleInput.value = typeof card.captionTitle === "string" ? card.captionTitle : DEFAULT_CAPTION_TITLE;
+    captionSubInput.value = typeof card.captionSub === "string" ? card.captionSub : DEFAULT_CAPTION_SUB;
+    SCALE_KEYS.forEach(function (k) {
+      var v = getScale(card, k);
+      scaleInputs[k].value = v;
+      scaleOutputs[k].textContent = v + "%";
+    });
 
     priceRowsEl.innerHTML = "";
     (card.priceRows || []).forEach(function (row, i) {
@@ -390,6 +423,43 @@
     save();
     renderList();
     renderSheet();
+  });
+
+  captionTitleInput.addEventListener("input", function () {
+    var card = getSelected();
+    if (!card) return;
+    card.captionTitle = captionTitleInput.value;
+    save();
+    renderPreview();
+  });
+  captionSubInput.addEventListener("input", function () {
+    var card = getSelected();
+    if (!card) return;
+    card.captionSub = captionSubInput.value;
+    save();
+    renderPreview();
+  });
+
+  SCALE_KEYS.forEach(function (k) {
+    scaleInputs[k].addEventListener("input", function () {
+      var card = getSelected();
+      if (!card) return;
+      var v = parseInt(scaleInputs[k].value, 10) || 100;
+      card.textScale = card.textScale || {};
+      card.textScale[k] = v;
+      scaleOutputs[k].textContent = v + "%";
+      save();
+      renderPreview();
+    });
+  });
+
+  document.getElementById("reset-sizes").addEventListener("click", function () {
+    var card = getSelected();
+    if (!card) return;
+    delete card.textScale;
+    save();
+    renderEditor();
+    renderPreview();
   });
 
   showPricesInput.addEventListener("change", function () {

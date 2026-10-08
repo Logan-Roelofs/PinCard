@@ -116,6 +116,17 @@ label {
 }
 .checkbox-row input { width: auto; }
 
+.size-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin: 4px 0;
+}
+.size-row span { flex: 0 0 90px; }
+.size-row input[type=range] { flex: 1; width: auto; padding: 0; }
+.size-row output { flex: 0 0 40px; text-align: right; color: var(--muted); font-size: 12px; }
+
 .section-heading {
   display: block;
   margin-top: 20px;
@@ -360,7 +371,7 @@ label {
 .pin-card .title {
   flex: none;
   font-weight: 800;
-  font-size: 3.6mm;
+  font-size: calc(3.6mm * var(--title-scale, 1));
   text-align: center;
   line-height: 1.15;
   word-break: break-word;
@@ -406,10 +417,10 @@ label {
   align-items: center;
 }
 .pin-card.no-price .footer .qr-caption {
-  font-size: 2.8mm;
+  font-size: calc(2.8mm * var(--caption-scale, 1));
 }
 .pin-card.no-price .footer .qr-caption strong {
-  font-size: 3.1mm;
+  font-size: calc(3.1mm * var(--caption-scale, 1));
 }
 
 .pin-card .prices {
@@ -430,10 +441,10 @@ label {
 }
 .pin-card .price-line .amt {
   font-weight: 800;
-  font-size: 4mm;
+  font-size: calc(4mm * var(--amt-scale, 1));
 }
 .pin-card .price-line .desc {
-  font-size: 2.6mm;
+  font-size: calc(2.6mm * var(--desc-scale, 1));
   color: #333;
 }
 
@@ -453,14 +464,14 @@ label {
   display: block;
 }
 .pin-card .footer .qr-caption {
-  font-size: 2.1mm;
+  font-size: calc(2.1mm * var(--caption-scale, 1));
   line-height: 1.25;
   color: #444;
   text-align: right;
 }
 .pin-card .footer .qr-caption strong {
   display: block;
-  font-size: 2.3mm;
+  font-size: calc(2.3mm * var(--caption-scale, 1));
 }
 
 .no-print { }

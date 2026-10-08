@@ -89,6 +89,18 @@
     <label for="qr-input">Report-a-problem URL</label>
     <input type="url" id="qr-input" placeholder="https://yoursite.com/report?game=...">
 
+    <label for="caption-title-input">QR caption text</label>
+    <input type="text" id="caption-title-input" placeholder="Problem with this game?">
+    <input type="text" id="caption-sub-input" placeholder="Scan to report it" style="margin-top:6px;">
+    <div class="muted-note">Clear a line to hide it.</div>
+
+    <label>Text size</label>
+    <div class="size-row"><span>Title</span><input type="range" id="scale-title" min="50" max="250" step="5"><output id="scale-title-val">100%</output></div>
+    <div class="size-row"><span>Price</span><input type="range" id="scale-amt" min="50" max="250" step="5"><output id="scale-amt-val">100%</output></div>
+    <div class="size-row"><span>Price details</span><input type="range" id="scale-desc" min="50" max="250" step="5"><output id="scale-desc-val">100%</output></div>
+    <div class="size-row"><span>QR caption</span><input type="range" id="scale-caption" min="50" max="250" step="5"><output id="scale-caption-val">100%</output></div>
+    <button class="small" id="reset-sizes" type="button" style="margin-top:4px;">Reset text sizes</button>
+
     <div class="field-row">
       <div>
         <label for="accent-input">Accent color</label>
