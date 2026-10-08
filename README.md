@@ -85,3 +85,7 @@ data/shared-cards.json  A published set of cards — add your own, or add more f
 ## Credits
 
 QR code generation uses [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) by Kazuhiko Arase (MIT license), vendored locally in `js/qrcode.js` so the app works fully offline.
+
+## Updating the site (cache busting)
+
+GitHub Pages lets browsers cache files for about 10 minutes. `index.html` links `style.css`, `qrcode.js` and `app.js` with a `?v=` stamp; change that stamp whenever you edit those files so visitors don't get a stale copy mixed with new HTML.
